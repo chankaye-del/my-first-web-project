@@ -38,7 +38,7 @@
         <p>Orchestrating AI-assisted layouts for trading tracking.</p>
     </div>
 
-    <!-- NEW: Aggregation/Portfolio Summary Row -->
+    <!-- Portfolio Summary Row -->
     <div class="summary-row">
         <div class="summary-card" style="border-left: 4px solid #ef4444;">
             <label>Total Capital At Risk</label>
@@ -114,7 +114,7 @@
         tradeBook.push({ ticker, type, strike, premium, maxRisk });
         
         updateTable();
-        calculateMetrics(); // Dynamic calculation hook
+        calculateMetrics();
     }
 
     function updateTable() {
@@ -133,7 +133,6 @@
         });
     }
 
-    // NEW: Analytical aggregation function
     function calculateMetrics() {
         let runningRisk = 0;
         let runningContracts = tradeBook.length;
@@ -146,7 +145,6 @@
             if (trade.type === 'Put') puts++;
         });
 
-        // Update top components instantly
         document.getElementById('totalRisk').innerText = `$${runningRisk.toFixed(2)}`;
         document.getElementById('totalContracts').innerText = runningContracts;
         document.getElementById('allocationRatio').innerText = `${calls} C / ${puts} P`;
